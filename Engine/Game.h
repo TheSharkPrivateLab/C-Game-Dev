@@ -31,33 +31,44 @@ public:
 	Game( const Game& ) = delete;
 	Game& operator=( const Game& ) = delete;
 	void Go();
-	void drawCursor(int x, int y, int rgb);
 private:
 	void ComposeFrame();
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	void DrawFace(int x, int y);
+	void DrawPoo(int x, int y);
+	void DrawGameOver(int x, int y);
+	void DrawTitleScreen(int x, int y);
+	int ClampScreenX(int x, int width);
+	int ClampScreenY(int y, int width);
 	/********************************/
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	int x_fixed = 200;
-	int y_fixed = 500;
-	int x = 400;
-	int y = 400;
-	int vx = 0;
-	int vy = 0;
-	int rgb_fixed = 255;
-	int normalGb = 255;
-	int stripGb = 20;
-	int tempGb = normalGb;
+	int dudeX = 400;
+	int dudeY = 300;
+	int dudeWidth = 20;
+	int dudeHeight = 20;
+	bool IsColliding(int x0, int y0, int width0, int height0, int x1, int y1, int width1, int height1);
 
-	bool shapeChanged = false;
-	bool inhUp = false;
-	bool inhDown = false;
-	bool inhLeft = false;
-	bool inhRight = false;
+	int pooHeight = 24;
+	int pooWidth = 24;
+
+	int poo0X = 300;
+	int poo0Y = 150;
+	bool poo0IsEaten = false;
+
+	int poo1Y = 100;
+	int poo1X = 500;
+	bool poo1IsEaten = false;
+
+	int poo2X = 600;
+	int poo2Y = 400;
+	bool poo2IsEaten = false;
+
+	bool isStarted = false;
 	/********************************/
 };
